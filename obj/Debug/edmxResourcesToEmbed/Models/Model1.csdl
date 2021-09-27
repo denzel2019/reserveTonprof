@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="maBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Abonnement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateInscription" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateFinInscription" Type="DateTime" Precision="0" />
+    <Property Name="user_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="user" Relationship="Self.FK_abonnement_User" FromRole="Abonnement" ToRole="user" />
+    <NavigationProperty Name="Donnees" Relationship="Self.FK_Donnees_Abonnement" FromRole="Abonnement" ToRole="Donnees" />
+  </EntityType>
+  <EntityType Name="Donnees">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateConnexion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateFinConnexion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="nbConnexion" Type="Int32" />
+    <Property Name="nbReservation" Type="Int32" />
+    <Property Name="nbParticipants" Type="Int32" />
+    <Property Name="nbCours" Type="Int32" />
+    <Property Name="nbGestionnaires" Type="Int32" />
+    <Property Name="gestionCompte_Id" Type="Int32" Nullable="false" />
+    <Property Name="Abonnement_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Abonnement" Relationship="Self.FK_Donnees_Abonnement" FromRole="Donnees" ToRole="Abonnement" />
+    <NavigationProperty Name="gestionCompte" Relationship="Self.FK_Donnees_gestionCompte" FromRole="Donnees" ToRole="gestionCompte" />
+  </EntityType>
+  <EntityType Name="gestionCompte">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="identifiant" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="role" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IP" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Name="user_Id" Type="Int32" Nullable="true" />
+    <NavigationProperty Name="Donnees" Relationship="Self.FK_Donnees_gestionCompte" FromRole="gestionCompte" ToRole="Donnees" />
+    <NavigationProperty Name="user" Relationship="Self.FK_gestionCompte_user" FromRole="gestionCompte" ToRole="user" />
+  </EntityType>
+  <EntityType Name="jours">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="jour" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="reservation" Relationship="Self.FK_reservation_jours" FromRole="jours" ToRole="reservation" />
+  </EntityType>
+  <EntityType Name="matiere">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="domaine" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_Id" Type="Int32" />
+    <NavigationProperty Name="user" Relationship="Self.FK_matiere_user" FromRole="matiere" ToRole="user" />
+    <NavigationProperty Name="reservation" Relationship="Self.FK_reservation_matiere" FromRole="matiere" ToRole="reservation" />
+    <NavigationProperty Name="user1" Relationship="Self.FK_user_matiere" FromRole="matiere" ToRole="user" />
+    <Property Name="Photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="message">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="confirmation" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="reservation" Relationship="Self.FK_reservation_message" FromRole="message" ToRole="reservation" />
+  </EntityType>
+  <EntityType Name="reservation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="dateCours" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="horaireDebut" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="horaireFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="commentaires" Type="String" MaxLength="280" FixedLength="false" Unicode="true" />
+    <Property Name="matiere_Id" Type="Int32" Nullable="false" />
+    <Property Name="statutRdv_Id" Type="Int32" Nullable="false" />
+    <Property Name="jours_Id" Type="Int32" Nullable="false" />
+    <Property Name="message_Id" Type="Int32" Nullable="false" />
+    <Property Name="user_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="jours" Relationship="Self.FK_reservation_jours" FromRole="reservation" ToRole="jours" />
+    <NavigationProperty Name="matiere" Relationship="Self.FK_reservation_matiere" FromRole="reservation" ToRole="matiere" />
+    <NavigationProperty Name="message" Relationship="Self.FK_reservation_message" FromRole="reservation" ToRole="message" />
+    <NavigationProperty Name="statutRdv" Relationship="Self.FK_reservation_statutRdv" FromRole="reservation" ToRole="statutRdv" />
+    <NavigationProperty Name="user" Relationship="Self.FK_reservation_user" FromRole="reservation" ToRole="user" />
+  </EntityType>
+  <EntityType Name="statutRdv">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatutListe_" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="reservation" Relationship="Self.FK_reservation_statutRdv" FromRole="statutRdv" ToRole="reservation" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="prenom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="telephone" Type="Int32" Nullable="false" />
+    <Property Name="adresse" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="codePostal" Type="Int32" Nullable="false" />
+    <Property Name="ville" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="presentation" Type="String" MaxLength="380" FixedLength="false" Unicode="true" />
+    <Property Name="photo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="matiere_id" Type="Int32" />
+    <NavigationProperty Name="Abonnement" Relationship="Self.FK_abonnement_User" FromRole="user" ToRole="Abonnement" />
+    <NavigationProperty Name="gestionCompte" Relationship="Self.FK_gestionCompte_user" FromRole="user" ToRole="gestionCompte" />
+    <NavigationProperty Name="matiere" Relationship="Self.FK_matiere_user" FromRole="user" ToRole="matiere" />
+    <NavigationProperty Name="matiere1" Relationship="Self.FK_user_matiere" FromRole="user" ToRole="matiere" />
+    <NavigationProperty Name="reservation" Relationship="Self.FK_reservation_user" FromRole="user" ToRole="reservation" />
+  </EntityType>
+  <Association Name="FK_abonnement_User">
+    <End Role="user" Type="Self.user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Abonnement">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Donnees_Abonnement">
+    <End Role="Abonnement" Type="Self.Abonnement" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Donnees" Type="Self.Donnees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Abonnement">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Donnees">
+        <PropertyRef Name="Abonnement_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Donnees_gestionCompte">
+    <End Role="gestionCompte" Type="Self.gestionCompte" Multiplicity="1" />
+    <End Role="Donnees" Type="Self.Donnees" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="gestionCompte">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Donnees">
+        <PropertyRef Name="gestionCompte_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_gestionCompte_user">
+    <End Role="user" Type="Self.user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="gestionCompte" Type="Self.gestionCompte" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="gestionCompte">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservation_jours">
+    <End Role="jours" Type="Self.jours" Multiplicity="1" />
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jours">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="jours_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_matiere_user">
+    <End Role="user" Type="Self.user" Multiplicity="0..1" />
+    <End Role="matiere" Type="Self.matiere" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="matiere">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservation_matiere">
+    <End Role="matiere" Type="Self.matiere" Multiplicity="1" />
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matiere">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="matiere_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_user_matiere">
+    <End Role="matiere" Type="Self.matiere" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matiere">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="matiere_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservation_message">
+    <End Role="message" Type="Self.message" Multiplicity="1" />
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="message">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="message_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservation_statutRdv">
+    <End Role="statutRdv" Type="Self.statutRdv" Multiplicity="1" />
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="statutRdv">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="statutRdv_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservation_user">
+    <End Role="user" Type="Self.user" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="reservation" Type="Self.reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="reservation">
+        <PropertyRef Name="user_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="maBaseEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Abonnement" EntityType="Self.Abonnement" />
+    <EntitySet Name="Donnees" EntityType="Self.Donnees" />
+    <EntitySet Name="gestionCompte" EntityType="Self.gestionCompte" />
+    <EntitySet Name="jours" EntityType="Self.jours" />
+    <EntitySet Name="matiere" EntityType="Self.matiere" />
+    <EntitySet Name="message" EntityType="Self.message" />
+    <EntitySet Name="reservation" EntityType="Self.reservation" />
+    <EntitySet Name="statutRdv" EntityType="Self.statutRdv" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <AssociationSet Name="FK_abonnement_User" Association="Self.FK_abonnement_User">
+      <End Role="user" EntitySet="user" />
+      <End Role="Abonnement" EntitySet="Abonnement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Donnees_Abonnement" Association="Self.FK_Donnees_Abonnement">
+      <End Role="Abonnement" EntitySet="Abonnement" />
+      <End Role="Donnees" EntitySet="Donnees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Donnees_gestionCompte" Association="Self.FK_Donnees_gestionCompte">
+      <End Role="gestionCompte" EntitySet="gestionCompte" />
+      <End Role="Donnees" EntitySet="Donnees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_gestionCompte_user" Association="Self.FK_gestionCompte_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="gestionCompte" EntitySet="gestionCompte" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservation_jours" Association="Self.FK_reservation_jours">
+      <End Role="jours" EntitySet="jours" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_matiere_user" Association="Self.FK_matiere_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="matiere" EntitySet="matiere" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservation_matiere" Association="Self.FK_reservation_matiere">
+      <End Role="matiere" EntitySet="matiere" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_user_matiere" Association="Self.FK_user_matiere">
+      <End Role="matiere" EntitySet="matiere" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservation_message" Association="Self.FK_reservation_message">
+      <End Role="message" EntitySet="message" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservation_statutRdv" Association="Self.FK_reservation_statutRdv">
+      <End Role="statutRdv" EntitySet="statutRdv" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservation_user" Association="Self.FK_reservation_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="reservation" EntitySet="reservation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

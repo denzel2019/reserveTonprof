@@ -1,0 +1,93 @@
+﻿@model reserverProf.Model.user
+
+@{
+    ViewBag.Title = "detailsUtilisateur";
+}
+
+<div>
+    <h2 style="color:green">Informations sur le Participant</h2>
+    <br />
+    <div>
+        <h4>@Html.DisplayFor(model => model.prenom) @Html.DisplayFor(model => model.nom)</h4>
+        <hr />
+        <dl class="dl-horizontal">
+
+            <dd>
+                <img src="~/images/@Html.DisplayFor(modelItem => modelItem.photo)" />
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.prenom)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.prenom)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.telephone)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.telephone)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.adresse)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.adresse)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.codePostal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.codePostal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ville)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ville)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
+
+        </dl>
+    </div>
+
+    @{
+        ViewBag.Title = "PartialView";
+    }
+
+    <div style="height:700px;width:900px;margin:0 auto; background-color: #eee">
+
+
+        @{
+            Html.RenderAction("Calendar");
+        }
+
+
+    </div>
+
+
+

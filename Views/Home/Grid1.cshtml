@@ -1,0 +1,43 @@
+﻿@model IEnumerable<reserverProf.Models.matiere>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color:green">Liste des matières</h2>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete-user').click(function (event) {
+                var boutonClique = $(event.target).closest('button');
+                var idASupprimer = $(boutonClique).attr('data-id');
+
+        $.ajax({
+            url: '@Url.Action("Delete1")',
+            type: 'POST',
+            data: { id: idASupprimer },
+            success: function (data) {
+                if (data.Suppression == "Ok") {
+                    $(boutonClique).closest("tr").fadeOut(400, function () {
+                        $(this).remove();
+                    })
+                        }
+            }
+
+                })
+            });
+        });
+    </script>
+}
+@using GridMvc.Html
+
+<p>@Html.ActionLink("Créer son profil de prosesseur", "Create")</p>
+
+@Html.Grid(Model).Columns(columns =>
+{
+columns.Add().Encoded(false).Sanitized(false).Titled("Image").RenderValueAs(@<img src="/images/Cours/@Html.DisplayFor(modelitem => item.user_Id)" ) style="border: 5px solid black; width: 75px; height: 90px" />);
+columns.Add(model => model.domaine).Sortable(true);
+columns.Add().Encoded(false).Sanitized(false).RenderValueAs(@<button type="submit" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Consultation", "detailsProfs", new { id = item.Id })</button>);
+columns.Add().Encoded(false).Sanitized(false).RenderValueAs(user => Html.ActionLink("Editer", "Edit", new { id = user.Id }));
+columns.Add().Encoded(false).Sanitized(false).RenderValueAs(user => "<button class='btn btn-default btn-delete-user' data-id='" + user.Id + "' > <span class='glyphicon glyphicon-remove' /> </button>");
+
+});

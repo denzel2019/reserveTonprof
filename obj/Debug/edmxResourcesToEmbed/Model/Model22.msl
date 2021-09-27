@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities22">
+    <EntitySetMapping Name="Abonnement">
+      <EntityTypeMapping TypeName="Model.Abonnement">
+        <MappingFragment StoreEntitySet="Abonnement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="dateInscription" ColumnName="dateInscription" />
+          <ScalarProperty Name="dateFinInscription" ColumnName="dateFinInscription" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donnees">
+      <EntityTypeMapping TypeName="Model.Donnees">
+        <MappingFragment StoreEntitySet="Donnees">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="dateConnexion" ColumnName="dateConnexion" />
+          <ScalarProperty Name="dateFinConnexion" ColumnName="dateFinConnexion" />
+          <ScalarProperty Name="nbConnexion" ColumnName="nbConnexion" />
+          <ScalarProperty Name="nbReservation" ColumnName="nbReservation" />
+          <ScalarProperty Name="nbParticipants" ColumnName="nbParticipants" />
+          <ScalarProperty Name="nbCours" ColumnName="nbCours" />
+          <ScalarProperty Name="nbGestionnaires" ColumnName="nbGestionnaires" />
+          <ScalarProperty Name="gestionCompte_Id" ColumnName="gestionCompte_Id" />
+          <ScalarProperty Name="Abonnement_Id" ColumnName="Abonnement_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="gestionCompte">
+      <EntityTypeMapping TypeName="Model.gestionCompte">
+        <MappingFragment StoreEntitySet="gestionCompte">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="identifiant" ColumnName="identifiant" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="IP" ColumnName="IP" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jours">
+      <EntityTypeMapping TypeName="Model.jours">
+        <MappingFragment StoreEntitySet="jours">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="jour" ColumnName="jour" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="matiere">
+      <EntityTypeMapping TypeName="Model.matiere">
+        <MappingFragment StoreEntitySet="matiere">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="matiere1" ColumnName="matiere" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="message">
+      <EntityTypeMapping TypeName="Model.message">
+        <MappingFragment StoreEntitySet="message">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="confirmation" ColumnName="confirmation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="reservation">
+      <EntityTypeMapping TypeName="Model.reservation">
+        <MappingFragment StoreEntitySet="reservation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="dateCours" ColumnName="dateCours" />
+          <ScalarProperty Name="horaireDebut" ColumnName="horaireDebut" />
+          <ScalarProperty Name="horaireFin" ColumnName="horaireFin" />
+          <ScalarProperty Name="commentaires" ColumnName="commentaires" />
+          <ScalarProperty Name="matiere_Id" ColumnName="matiere_Id" />
+          <ScalarProperty Name="statutRdv_Id" ColumnName="statutRdv_Id" />
+          <ScalarProperty Name="jours_Id" ColumnName="jours_Id" />
+          <ScalarProperty Name="message_Id" ColumnName="message_Id" />
+          <ScalarProperty Name="user_Id" ColumnName="user_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="statutRdv">
+      <EntityTypeMapping TypeName="Model.statutRdv">
+        <MappingFragment StoreEntitySet="statutRdv">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StatutListe_" ColumnName="StatutListe_" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="user">
+      <EntityTypeMapping TypeName="Model.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="adresse" ColumnName="adresse" />
+          <ScalarProperty Name="codePostal" ColumnName="codePostal" />
+          <ScalarProperty Name="ville" ColumnName="ville" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="presentation" ColumnName="presentation" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="matiere_id" ColumnName="matiere_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

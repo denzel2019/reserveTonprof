@@ -1,0 +1,62 @@
+﻿@model IEnumerable<reserverProf.Model.user>
+
+@{
+    ViewBag.Title = "ListeUtilisateurs";
+}
+<link href="~/CSS/Liste.css" type="text/css" rel="stylesheet" />
+
+<div id="menu">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Planning</a></li>
+        <li><a href="#">Infos Profils</a></li>
+        <li><a href="#">Stats</a></li>
+        <li><a href="#">Historique</a></li>
+    </ul>
+</div>
+
+<h2>Liste des Participants</h2>
+
+<p>
+    @Html.ActionLink("Créer nouveau profil", "CreateCompte")
+</p>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-delete-user').click(function (event) {
+                var boutonClique = $(event.target).closest('button');
+                var idASupprimer = $(boutonClique).attr('data-id');
+
+        $.ajax({
+            url: '@Url.Action("Delete1")',
+            type: 'POST',
+            data: { id: idASupprimer },
+            success: function (data) {
+                if (data.Suppression == "Ok") {
+                    $(boutonClique).closest("tr").fadeOut(400, function () {
+                        $(this).remove();
+                    })
+                        }
+            }
+
+                })
+            });
+        });
+    </script>
+}
+@using GridMvc.Html
+
+@Html.Grid(Model).Columns(columns =>
+{
+columns.Add().Encoded(false).Sanitized(false).Titled("Image").RenderValueAs(@<img src="/images/@Html.DisplayFor(modelitem => item.photo)" ) style="border: 5px solid black; width: 75px; height: 90px" />);
+columns.Add(model => model.nom).Sortable(true);
+columns.Add(model => model.adresse).Filterable(true);
+columns.Add(model => model.codePostal).Sortable(true);
+columns.Add(model => model.ville).Sortable(true);
+columns.Add().Encoded(false).Sanitized(false).RenderValueAs(@<button type="submit" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Consultation", "detailsUtilisateur", new { id = item.Id })</button>);
+columns.Add().Encoded(false).Sanitized(false).RenderValueAs(user => Html.ActionLink("Editer", "Edit", new { id = user.Id }));
+columns.Add().Encoded(false).Sanitized(false).RenderValueAs(user => "<button class='btn btn-default btn-delete-user' data-id='" + user.Id + "' > <span class='glyphicon glyphicon-remove' /> </button>");
+
+}).WithPaging(4);
+
+

@@ -1,0 +1,44 @@
+﻿@model reserverProf.Model.gestionCompte
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<!--<h2 style="color:green; font-size: 34px; font-family:'Arial Rounded MT'; margin-top:-20px">Login</h2>-->
+
+<form method="post" action="/Home/Login">
+    <div id="formuConnexion">
+        <p id="firstBloc">
+            @Html.AntiForgeryToken()
+            <label for="identifiant">Identifiant</label>
+            <br />
+            <input type="email" name="identifiant" style="border-radius: 5px; width: 250px; height: 30px" />
+            @Html.ValidationMessageFor(model => model.identifiant, "", new { @class = "text-danger" })
+        </p>
+        <p>
+            <label for="password">Mot de passe</label>
+            <br />
+            <input type="password" name="mdp" style="border-radius: 5px; width: 250px; height: 30px" />
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+        </p>
+    </div>
+    <br />
+    <p>
+        @*@using System.Web.Mvc;
+        @using System.Collections.Generic;*@
+
+        
+        <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Valider", "detailsProfs")</button>
+        <button type="reset" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px;
+        color: white;
+        margin-right: 10px">
+            @Html.ActionLink("Effacer", "Login")
+        </button>
+        @Html.ActionLink("Identifiant oublié", "Identifiant") |
+        @Html.ActionLink("Mot de passe oublié", "Mdp") |
+    </p>
+
+</form>
+<script src="~/Scripts/jquery-1.11.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

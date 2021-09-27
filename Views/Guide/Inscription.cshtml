@@ -1,0 +1,102 @@
+﻿@model reserverProf.Models.gestionCompte
+
+@{
+    ViewBag.Title = "Inscription";
+}
+<br />
+<br />
+<h2 style="color:green; font-size: 34px; font-family:'Arial Rounded MT'; margin-top:-20px">Inscription</h2>
+
+
+<form method="post" action="Inscription.cshtml">
+
+    <div id="formuConnexion">
+        <p id="firstBloc">
+            @Html.AntiForgeryToken()
+            <label for="identifiant">Identifiant</label>
+            <br />
+        <p style="border-radius: 5px; width: 120px; height: 30px">
+            @Html.EditorFor(model => model.identifiant, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.identifiant, "", new { @class = "text-danger" })
+        </p>
+        <br />
+        <br />
+        <p id="firstBloc" style="margin-right: 30px">
+            @Html.AntiForgeryToken()
+            <label for="password">Mot de passe</label>
+            <br />
+        <p style="border-radius: 5px; width: 120px; height: 30px">
+            @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+        </p>
+    </div>
+    <br />
+    <section id="panneau">
+
+        <p id="secondPanneau">
+            <label for="Matiere">Matière</label>
+            <br />
+            <select name="liste" onchange="combo(this, theinput)" style="border-radius: 5px">
+                <option>Domaine</option>
+                <option>Math</option>
+                <option>Allemand</option>
+                <option>Anglais</option>
+                <option>Espagnol</option>
+                <option>Piano</option>
+                <option>Guitare</option>
+                <option>Yoga</option>
+                <option>Danse</option>
+                <option>Judo</option>
+            </select>
+        </p>
+        <p id="thirdPanneau">
+            <label for="Matiere">Jours disponibles</label>
+            <br />
+            <input type="checkbox" name="jour" value="lundi" />
+            <label for="Lundi">Lundi</label>
+            <input type="checkbox" name="jour" value="mardi" />
+            <label for="Mardi">Mardi</label>
+            <input type="checkbox" name="jour" value="mercredi" />
+            <label for="Mercredi">Mercredi</label>
+            <br />
+            <input type="checkbox" name="jour" value="jeudi" />
+            <label for="Jeudi">Jeudi</label>
+            <input type="checkbox" name="jour" value="vendredi" />
+            <label for="Vendredi">Vendredi</label>
+            <input type="checkbox" name="jour" value="samedi" />
+            <label for="Samedi">Samedi</label>
+            <br />
+            <input type="checkbox" name="jour" value="dimanche" />
+            <label for="Dimanche">Dimanche</label>
+        </p>
+        <p id="fourPanneau">
+            <label for="Indisponibilites">Indisponibilités</label>
+            <br />
+            <input type="date" id="date" name="datePicker" value="2020-03-12" min="2020-01-01" max="2022-01-01" style="border-radius: 5px" />
+        </p>
+    </section>
+    <br />
+
+
+    <form action="/Guide/choixUtilisateur">
+        <label for="Situation">Situation</label>
+        <br />
+        <input type="radio" name="option" value="professeur" id="professeur" />
+        <label for="professeur">Professeur</label>
+        <br />
+        <input type="radio" name="option" value="participant" id="participant" />
+        <label for="participant">Participant</label>
+        <input type="submit" name="btnOk" value="Valider compte" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white"></input>
+        <button type="reset" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">Annuler compte</button>
+    </form>
+
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-2">
+        <label class="label-success">@ViewBag.SuccessMessage</label>
+    </div>
+
+
+
+</div>
+

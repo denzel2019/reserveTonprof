@@ -1,0 +1,137 @@
+﻿@model reserverProf.Model.user
+
+
+@{
+    ViewBag.Title = "detailsProfs";
+}
+
+
+
+
+
+<h2 style="color:green">Gros plan</h2>
+<br />
+<div>
+    <div id="parallele">
+        <h4>@Html.DisplayFor(model => model.prenom) @Html.DisplayFor(model => model.nom)</h4>
+
+        <p style="margin-left: 150px">
+            @Html.ActionLink("Home", "Index") |
+            @Html.ActionLink("Retour", "Grid")
+        </p>
+    </div>
+    <hr />
+    <div id="parallele">
+        <section>
+            <dl class="dl-horizontal">
+
+                <dd style="margin-right: 15px">
+                    <img src="~/images/User/@Html.DisplayFor(model => model.photo)" />
+                </dd>
+        </section>
+        <section>
+
+            <dd>
+                @Html.DisplayFor(model => model.prenom)
+                @Html.DisplayFor(model => model.nom)
+            </dd>
+
+            <dd>
+                @Html.DisplayFor(model => model.adresse)
+                @Html.DisplayFor(model => model.codePostal)
+                @Html.DisplayFor(model => model.ville)
+            </dd>
+            <dd>
+                 @Html.DisplayFor(model => model.telephone)
+            </dd>
+            <dt>
+                
+                
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.matiere.domaine)
+            </dd>
+
+            <dt>
+                @Html.DisplayFor(model => model.presentation)
+            </dt>
+
+
+
+            </dl>
+        </section>
+    </div>
+</div>
+
+
+           
+@*@{ 
+    ViewBag.Title = "PartialView";
+}*@
+
+
+<div style="height:700px;width:900px;margin:0 auto; background-color: #eee">
+ <div id="Calender"></div> 
+    
+<link href=" = //cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.min.css" rel="stylesheet" />
+
+@section script{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var events = [];
+            $ajax({
+                type: "GET",
+                url: "/home/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: v.Subject,
+                            description: v.Description,
+                            start: moment(v.Start),
+                            end: v.End != null ? moment(v.End) : null,
+                            color: v.ThemeColor
+                        });
+                    })
+
+                    GenerateCalender(events)
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+            function GenerateCalender(events) {
+                $('#calendar').fullcalendar('destroy');
+                $('#calendar').fullcalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next,today',
+                        center: 'titre',
+                        right: 'month,basicWeek,basicDay, agenda',
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events : events
+                });
+            }
+        });
+
+
+    </script>
+    } 
+"
+    
+    @*@{ 
+        Html.RenderAction("Calendar");
+    }*@
+ 
+
+</div>
+
+
+

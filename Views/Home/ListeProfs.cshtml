@@ -1,0 +1,72 @@
+﻿@model IEnumerable<reserverProf.Models.user>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 style="color:green">Liste des Professeurs</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.adresse)
+        </th>
+        <th>
+            code postal
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ville)
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr style="vertical-align: middle">
+            <td>
+                <img src="~/images/@Html.DisplayFor(modelItem => item.photo)" style="border: 5px solid black" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nom)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.adresse)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codePostal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ville)
+            </td>
+
+
+
+
+            <td>
+                <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Consultation", "detailsProfs", new { id = item.Id })</button>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+   

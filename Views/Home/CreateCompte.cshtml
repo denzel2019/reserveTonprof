@@ -1,0 +1,149 @@
+﻿@model reserverProf.Model.user
+
+@{
+    ViewBag.Title = "CreateCompte";
+}
+
+<h2 style="color: green">Création de compte</h2>
+
+
+@using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <section id="ariane">
+        <div class="form-group" style="margin-left:-25px">
+            @Html.LabelFor(model => model.photo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <br />
+            <br />
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.photo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.photo, "", new { @class = "text-danger" })*@
+
+            </div>
+
+
+            <input type="file" accept="image/jpeg" name="imageFile">
+
+
+
+
+
+        </div>
+        <div>
+            <p style="font-size: 18px; font-weight: bold;">@DateTime.Today.ToLongDateString()</p>
+            <br />
+            <br />
+            <marquee style="color: red">Rappel</marquee>
+        </div>
+    </section>
+
+    <h2 style="margin-left: 450px; font-weight: bold">Infos profil</h2>
+    <br />
+    <br />
+    <section style="margin-left: 250px">
+
+        <section id="ariane">
+            <div class="form-group">
+                <p style="margin-left: -15px"> @Html.LabelFor(model => model.prenom, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p style="margin-left:-15px"> @Html.LabelFor(model => model.nom, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nom, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </section>
+        <section id="ariane">
+            <div class="form-group">
+                <p style="margin-left:-15px">@Html.LabelFor(model => model.adresse, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.adresse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.adresse, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10" style="width: 600px; margin-left: -260px"><p style="font-weight: bold; margin-top: 20px">Statut :</p> Utilisateur</div>
+        </section>
+
+        <section id="ariane">
+            <div class="form-group">
+                <p style="margin-left:-15px">@Html.LabelFor(model => model.codePostal, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.codePostal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.codePostal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p style="margin-left:-15px">@Html.LabelFor(model => model.ville, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.ville, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ville, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </section>
+
+        <section id="ariane">
+            <div class="form-group">
+                <p style="margin-left:-15px"> @Html.LabelFor(model => model.telephone, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.telephone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.telephone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p style="margin-left:-15px">@Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })</p>
+                <br />
+                <br />
+                <div class="col-md-10" style="width: 600px">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </section>
+
+
+    </section>
+
+    <div style="margin-left: 350px">
+        <button type="submit" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Enregistrer", "CreateCompte")</button>
+        <button type="reset" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Mise à jour", "Edit")</button>
+        <button type="reset" class="btn btn-info btn-lg" data-toggle="modal" style="border-radius: 5px; color:white">@Html.ActionLink("Supprimer", "Index")</button>
+    </div>
+</div>
+}
+<br />
+<br />
+<div>
+    @Html.ActionLink("Retour Liste", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

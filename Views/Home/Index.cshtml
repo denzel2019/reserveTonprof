@@ -1,0 +1,82 @@
+﻿ @model IEnumerable<reserverProf.Model.matiere>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/CSS/Liste.css" type="text/css" rel="stylesheet" />
+<section id="ariane" style="margin-top: -30px;">
+    @Html.ActionLink("Cours", "Cours") |
+    @Html.ActionLink("Professeurs", "Grid") |
+    <img src="~/Image/enfantEcole.jpg" style="border-radius: 5px; border: 15px solid pink; margin-left: 200px; margin-top: -30px" />
+    <img src="~/Image/coursJudo.jpg" style="border-radius: 5px; border: 15px solid orange; transform: rotate(15deg); margin-left: 15px; margin-top: -30px" />
+</section>
+<img src="~/Image/coursDanse.jpg" style="        border-radius: 5px;
+        transform: rotate(-35deg);
+        border: 15px solid yellow;
+        margin-left: 750px;
+        margin-top: -80px" />
+<h1 style="color:green; font-size: 84px; font-family:'Arial Rounded MT'; margin-top:-50px">Profilib.fr</h1>
+<h3>Votre cours, votre professeur en un click</h3>
+
+<section id="disposition">
+    
+    <br />
+    <div>
+        <img src="~/Image/coursAnglais.jpg" style="border-radius: 5px; transform: rotate(-5deg); border: 15px solid violet; margin-top: -400px; margin-left: 95px" />
+        <br />
+        <br />
+        <img src="~/Image/yoga.jpg" style="border-radius: 5px; border: 15px solid lightblue; margin-top: -150px" />
+        <br />
+        <br />
+        <br />
+        <img src="~/Image/guitare.jpg" style="border-radius: 5px; transform: rotate(5deg); border: 15px solid lightgreen; margin-left: -15px; width: 250px; height: 150px" />
+    </div>
+    <br />
+    <br />
+    <table class="tableau" style="margin-left: 5px; font-size: 18px; margin-top: -5px">
+        <tr>
+            <th>
+                Par domaine
+            </th>
+            <th>
+                Par villes
+            </th>
+        </tr>
+        <tr>
+            <td>
+
+                <input type="search" style="        border-radius: 5px;
+        width: 500px;
+        height: 40px" />
+            </td>
+            <td>
+                <input type="search" style="border-radius: 5px; width: 500px; height: 40px" />
+            </td>
+            <td>
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" style="color:white">Rechercher</button>
+            </td>
+        </tr>
+
+    </table>
+</section>
+<br />
+<br />
+<section id="Compteur" style="font-size: 35px; margin-left: 320px; margin-top: -160px">
+    <div>
+
+    </div>
+    <div style="margin-right: 35px">
+        <p style="color:red"> &nbsp; &nbsp;&nbsp;&nbsp;100</p>
+        <p>professeurs</p>
+    </div>
+    <br />
+    <div style="margin-right: 35px">
+        <p style="color:red">&nbsp; &nbsp;&nbsp;&nbsp;80</p>
+        <p>participants</p>
+    </div>
+    <div>
+        <p style="color:red">&nbsp; &nbsp;&nbsp;&nbsp;150</p>
+        <p>réservations</p>
+    </div>
+</section>
+<br />
