@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("reserverProf")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Afpa")]
+[assembly: AssemblyCompany("Anonyme")]
 [assembly: AssemblyProduct("reserverProf")]
-[assembly: AssemblyCopyright("Copyright © Afpa 2020")]
+[assembly: AssemblyCopyright("Copyright © 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

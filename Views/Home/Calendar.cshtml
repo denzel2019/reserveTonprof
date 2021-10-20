@@ -1,15 +1,14 @@
-﻿
-@model dynamic
+﻿@*@model dynamic*@
 
-@{
+@*@{
     ViewBag.Title = "PartialView";
-}
+}*@
 
 
 <h2>Planning</h2>
 
 
-<div style="height:700px;width:900px;margin:0 auto">
+<div style="height:700px;width:900px;margin:0 auto; background-color: #eee">
     @Html.Raw(Model.Render())
 </div>
 

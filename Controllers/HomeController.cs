@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
 using System.Linq;
-using System.Reactive.Concurrency;
-using System.Security.Permissions;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using System.Web.Services.Description;
-using System.Web.UI.WebControls;
-using System.Windows.Media.Imaging;
-using DayPilot.Web.Mvc.Events.Gantt;
 using DHTMLX.Common;
 using DHTMLX.Scheduler;
 using DHTMLX.Scheduler.Data;
-using Microsoft.Win32;
-using Org.BouncyCastle.Asn1.Crmf;
-using Org.BouncyCastle.Crypto.Digests;
-using PagedList;
-using Quartz;
+using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using reserverProf.Model;
-
+using Quartz;
+using DHTMLX.Scheduler.GoogleCalendar;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace reserverProf.Controllers
 {
@@ -34,11 +22,9 @@ namespace reserverProf.Controllers
 
 
 
-
-
-        #region Page d'accueil
-        //GET: /Home/
-        public ActionResult Index()
+#region Page d'accueil
+//GET: /Home/
+public ActionResult Index()
         {
             return View();
 
@@ -186,12 +172,12 @@ namespace reserverProf.Controllers
             //var toto = db.user.ToList().FindAll(p => p.gestionCompte.role.Trim() == "utilisateur") ;
             //var tata = db.user.ToList().FirstOrDefault().gestionCompte.role;
             //var titi = db.user.ToList();
-
-
             //var toto = db.user.ToList().Where(p => p.gestionCompte.FirstOrDefault().role == "utilisateur");
 
+
+
             /*return View(db.user.ToList().FindAll(p => p.gestionCompte.FirstOrDefault().role == "administrateur")); //.FindAll(p => p.gestionCompte.role.Trim() == "administrateur"));*/
-            return View(db.user.ToList().FindAll(p => p.gestionCompte.SingleOrDefault().role == "utilisateur"));
+            return View(db.user.ToList().FindAll(p => p.gestionCompte.FirstOrDefault().role == "utilisateur"));
         }
 
         [HttpGet]
@@ -346,10 +332,10 @@ namespace reserverProf.Controllers
         }
         #endregion*/
 
-
-
-        #region Gros plan Utilisateur
-        public ActionResult detailsUtilisateur(int? id)
+        
+        
+            #region Gros plan Utilisateur
+            public ActionResult detailsUtilisateur(int? id)
         {
 
             return View(db.user.FirstOrDefault(m => m.Id == id));
@@ -370,39 +356,34 @@ namespace reserverProf.Controllers
         #endregion
 
         #region Calendrier
-       /* public ActionResult Calendar()
+        public virtual ActionResult Calendar()
         {
-            var sched = new DHXScheduler(this);
-            sched.Skin = DHXScheduler.Skins.Terrace;
-            sched.LoadData = true;
-            sched.EnableDataprocessor = true;
-            sched.InitialDate = new DateTime(2020, 3, 17);
-            return PartialView(sched);
-            
-        }
-        public ContentResult CustomData()
-        {
-            return new SchedulerAjaxData(db.reservation.Select(r => new { r.Id, r.dateCours, r.horaireDebut, r.horaireFin, r.commentaires }));
 
-        }
-        [HttpPost]
-        public ActionResult Save2(FormCollection actionValues, [Bind(Include = "Id, dateCours, horaireDebut, horaireFin, commentaires")] Model.reservation changedEvent)
-        {
-            
-            var action = new DataAction(actionValues);
-            changedEvent = DHXEventsHelper.Bind<Model.reservation>(actionValues);
-            var entities = new ModelState();
-
-            if (ModelState.IsValid)
+            try
             {
-                db.reservation.Add(changedEvent);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var sched = new DHXScheduler(this)
+                {
+                    InitialDate = new DateTime(2021, 10, 19)
+                };
+
+                sched.Skin = DHXScheduler.Skins.Material;
+
+                sched.LoadData = true;
+
+                sched.EnableDataprocessor = true;
+
+
+                return PartialView(sched);
             }
-            return View(changedEvent);
+            catch (Exception)
+            {
+
+                //throw;
+            }
+            return PartialView(null);
         }
 
-        public ActionResult Save(int ? id, FormCollection actionValues)
+        public ActionResult Save(int? id, FormCollection actionValues)
         {
             //var action = new DataAction(actionValues);
             //var changedEvent = DHXEventsHelper.Bind<Event>(actionValues);
@@ -418,17 +399,16 @@ namespace reserverProf.Controllers
                         var eventToInsert = db.reservation.SingleOrDefault(r => r.Id == action.TargetId);
                         action.TargetId = changedEvent.Id;
                         action.Message = changedEvent.commentaires;
-                        //eventToInsert.commentaires = changedEvent.commentaires;
-                        //eventToInsert.horaireDebut = changedEvent.horaireDebut;
-                        //eventToInsert.horaireFin = changedEvent.horaireFin;
-                        //eventToInsert.jours = changedEvent.jours;
-                        //eventToInsert.dateCours = changedEvent.dateCours;
+                        eventToInsert.horaireDebut = changedEvent.horaireDebut;
+                        eventToInsert.horaireFin = changedEvent.horaireFin;
+                        eventToInsert.jours = changedEvent.jours;
+                        eventToInsert.dateCours = changedEvent.dateCours;
                         db.reservation.Add(eventToInsert);
                         db.SaveChanges();
-                        
+
                         break;
                     case DataActionTypes.Update:
-                       var eventToUpdate = db.reservation.SingleOrDefault(r => r.Id == action.SourceId);
+                        var eventToUpdate = db.reservation.SingleOrDefault(r => r.Id == action.SourceId);
                         eventToUpdate.commentaires = changedEvent.commentaires;
                         eventToUpdate.horaireDebut = changedEvent.horaireDebut;
                         eventToUpdate.horaireFin = changedEvent.horaireFin;
@@ -455,16 +435,115 @@ namespace reserverProf.Controllers
                 action.Type = DataActionTypes.Error;
             }
             return (new AjaxSaveResponse(action));
-        }*/
-       public JsonResult GetEvents()
-        {
-            var events = db.reservation.ToList();
-            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
+        [HttpPost]
+        public ActionResult Save2(FormCollection actionValues, [Bind(Include = "Id, dateCours, horaireDebut, horaireFin, commentaires")] Model.reservation changedEvent)
+        {
+
+            var action = new DataAction(actionValues);
+            changedEvent = DHXEventsHelper.Bind<Model.reservation>(actionValues);
+            var entities = new ModelState();
+
+            if (ModelState.IsValid)
+            {
+                db.reservation.Add(changedEvent);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(changedEvent);
+        }
+
+        /* public ActionResult Calendar()
+         {
+             var sched = new DHXScheduler(this);
+             sched.Skin = DHXScheduler.Skins.Terrace;
+             sched.LoadData = true;
+             sched.EnableDataprocessor = true;
+             sched.InitialDate = new DateTime(2020, 3, 17);
+             return PartialView(sched);
+
+         }
+         public ContentResult CustomData()
+         {
+             return new SchedulerAjaxData(db.reservation.Select(r => new { r.Id, r.dateCours, r.horaireDebut, r.horaireFin, r.commentaires }));
+
+         }
+         [HttpPost]
+         public ActionResult Save2(FormCollection actionValues, [Bind(Include = "Id, dateCours, horaireDebut, horaireFin, commentaires")] Model.reservation changedEvent)
+         {
+
+             var action = new DataAction(actionValues);
+             changedEvent = DHXEventsHelper.Bind<Model.reservation>(actionValues);
+             var entities = new ModelState();
+
+             if (ModelState.IsValid)
+             {
+                 db.reservation.Add(changedEvent);
+                 db.SaveChanges();
+                 return RedirectToAction("Index");
+             }
+             return View(changedEvent);
+         }
+
+         public ActionResult Save(int ? id, FormCollection actionValues)
+         {
+             //var action = new DataAction(actionValues);
+             //var changedEvent = DHXEventsHelper.Bind<Event>(actionValues);
+             var entities = new SchedulerContext();
+             var action = new DataAction(actionValues);
+
+             try
+             {
+                 var changedEvent = DHXEventsHelper.Bind<Model.reservation>(actionValues);
+                 switch (action.Type)
+                 {
+                     case DataActionTypes.Insert:
+                         var eventToInsert = db.reservation.SingleOrDefault(r => r.Id == action.TargetId);
+                         action.TargetId = changedEvent.Id;
+                         action.Message = changedEvent.commentaires;
+                         //eventToInsert.commentaires = changedEvent.commentaires;
+                         //eventToInsert.horaireDebut = changedEvent.horaireDebut;
+                         //eventToInsert.horaireFin = changedEvent.horaireFin;
+                         //eventToInsert.jours = changedEvent.jours;
+                         //eventToInsert.dateCours = changedEvent.dateCours;
+                         db.reservation.Add(eventToInsert);
+                         db.SaveChanges();
+
+                         break;
+                     case DataActionTypes.Update:
+                        var eventToUpdate = db.reservation.SingleOrDefault(r => r.Id == action.SourceId);
+                         eventToUpdate.commentaires = changedEvent.commentaires;
+                         eventToUpdate.horaireDebut = changedEvent.horaireDebut;
+                         eventToUpdate.horaireFin = changedEvent.horaireFin;
+                         eventToUpdate.jours = changedEvent.jours;
+                         eventToUpdate.dateCours = changedEvent.dateCours;
+                         db.reservation.Add(changedEvent);
+                         db.SaveChanges();
+                         break;
+                     case DataActionTypes.Delete:
+                         changedEvent = db.reservation.FirstOrDefault(r => r.Id == action.SourceId);
+                         db.reservation.Remove(changedEvent);
+                         db.SaveChanges();
+                         break;
+                     default:// "update"
+                         var target = db.reservation.Single(r => r.Id == changedEvent.Id);
+                         DHXEventsHelper.Update(target, changedEvent, new List<string> { "Id" });
+                         db.SaveChanges();
+                         break;
+                 }
+                 action.TargetId = changedEvent.Id;
+             }
+             catch (Exception a)
+             {
+                 action.Type = DataActionTypes.Error;
+             }
+             return (new AjaxSaveResponse(action));
+         }*/
+
 
         #endregion
 
-        
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
