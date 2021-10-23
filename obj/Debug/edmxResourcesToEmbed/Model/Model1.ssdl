@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="maBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Abonnement">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="dateInscription" Type="datetime" Nullable="false" />
-    <Property Name="dateFinInscription" Type="datetime" />
+    <Property Name="dateInscription" Type="date" Nullable="false" />
+    <Property Name="dateFinInscription" Type="date" />
     <Property Name="user_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Donnees">
@@ -14,8 +14,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="dateConnexion" Type="datetime" Nullable="false" />
-    <Property Name="dateFinConnexion" Type="datetime" Nullable="false" />
+    <Property Name="dateConnexion" Type="date" Nullable="false" />
+    <Property Name="dateFinConnexion" Type="date" Nullable="false" />
     <Property Name="nbConnexion" Type="int" />
     <Property Name="nbReservation" Type="int" />
     <Property Name="nbParticipants" Type="int" />
@@ -63,9 +63,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="dateCours" Type="datetime" Nullable="false" />
-    <Property Name="horaireDebut" Type="datetime" Nullable="false" />
-    <Property Name="horaireFin" Type="datetime" Nullable="false" />
+    <Property Name="dateCoursDebut" Type="datetime" Nullable="false" />
+    <Property Name="dateCoursFin" Type="datetime" Nullable="false" />
     <Property Name="commentaires" Type="nvarchar" MaxLength="280" />
     <Property Name="matiere_Id" Type="int" Nullable="false" />
     <Property Name="statutRdv_Id" Type="int" Nullable="false" />
@@ -78,7 +77,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StatutListe_" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="StatutListe " Type="nvarchar" MaxLength="250" Nullable="false" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -238,7 +237,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="ModelStoreContainer">
+  <EntityContainer Name="maBaseModelStoreContainer">
     <EntitySet Name="Abonnement" EntityType="Self.Abonnement" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Donnees" EntityType="Self.Donnees" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="gestionCompte" EntityType="Self.gestionCompte" Schema="dbo" store:Type="Tables" />

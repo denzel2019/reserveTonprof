@@ -19,6 +19,7 @@ namespace reserverProf.Model
         {
             this.Abonnement = new HashSet<Abonnement>();
             this.gestionCompte = new HashSet<gestionCompte>();
+            this.matiere = new HashSet<matiere>();
             this.reservation = new HashSet<reservation>();
         }
     
@@ -38,7 +39,9 @@ namespace reserverProf.Model
         public virtual ICollection<Abonnement> Abonnement { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<gestionCompte> gestionCompte { get; set; }
-        public virtual matiere matiere { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<matiere> matiere { get; set; }
+        public virtual matiere matiere1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reservation> reservation { get; set; }
     }

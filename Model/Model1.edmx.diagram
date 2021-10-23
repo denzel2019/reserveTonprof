@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5918a5508d3b4b71a6df04ef256dacdb" Name="Diagram1">
+        <EntityTypeShape EntityType="maBaseModel.Abonnement" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.Donnees" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.gestionCompte" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.jours" Width="1.5" PointX="3" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.matiere" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.message" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.reservation" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.statutRdv" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="maBaseModel.user" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="maBaseModel.FK_abonnement_User" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_Donnees_Abonnement" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_Donnees_gestionCompte" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_gestionCompte_user" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_reservation_jours" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_matiere_user" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_reservation_matiere" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_user_matiere" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_reservation_message" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_reservation_statutRdv" ManuallyRouted="false" />
+        <AssociationConnector Association="maBaseModel.FK_reservation_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

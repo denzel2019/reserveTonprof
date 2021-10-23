@@ -18,16 +18,18 @@ namespace reserverProf.Model
         public matiere()
         {
             this.reservation = new HashSet<reservation>();
-            this.user = new HashSet<user>();
+            this.user1 = new HashSet<user>();
         }
     
         public int Id { get; set; }
         public string domaine { get; set; }
-        public string photo { get; set; }
+        public string Photo { get; set; }
+        public Nullable<int> user_Id { get; set; }
     
+        public virtual user user { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<reservation> reservation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<user> user { get; set; }
+        public virtual ICollection<user> user1 { get; set; }
     }
 }

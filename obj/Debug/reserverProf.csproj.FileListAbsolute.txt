@@ -700,4 +700,3 @@ E:\Users\Makoko\Desktop\reserverProf\reserverProf\bin\Microsoft.IdentityModel.To
 E:\Users\Makoko\Desktop\reserverProf\reserverProf\bin\Microsoft.Rest.ClientRuntime.xml
 E:\Users\Makoko\Desktop\reserverProf\reserverProf\bin\Microsoft.Rest.ClientRuntime.Azure.xml
 E:\Users\Makoko\Desktop\reserverProf\reserverProf\bin\Microsoft.Rest.ClientRuntime.Azure.Authentication.xml
-E:\Users\Makoko\Desktop\reserverProf\reserverProf\obj\Debug\reserverProf.csproj.CopyComplete

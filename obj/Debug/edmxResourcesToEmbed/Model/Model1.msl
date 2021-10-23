@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="maBaseEntities4">
+  <EntityContainerMapping StorageEntityContainer="maBaseModelStoreContainer" CdmEntityContainer="maBaseEntities">
     <EntitySetMapping Name="Abonnement">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Abonnement)">
+      <EntityTypeMapping TypeName="maBaseModel.Abonnement">
         <MappingFragment StoreEntitySet="Abonnement">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="dateInscription" ColumnName="dateInscription" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Donnees">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.Donnees)">
+      <EntityTypeMapping TypeName="maBaseModel.Donnees">
         <MappingFragment StoreEntitySet="Donnees">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="dateConnexion" ColumnName="dateConnexion" />
@@ -28,7 +28,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="gestionCompte">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.gestionCompte)">
+      <EntityTypeMapping TypeName="maBaseModel.gestionCompte">
         <MappingFragment StoreEntitySet="gestionCompte">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="identifiant" ColumnName="identifiant" />
@@ -40,7 +40,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="jours">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.jours)">
+      <EntityTypeMapping TypeName="maBaseModel.jours">
         <MappingFragment StoreEntitySet="jours">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="jour" ColumnName="jour" />
@@ -48,7 +48,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="matiere">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.matiere)">
+      <EntityTypeMapping TypeName="maBaseModel.matiere">
         <MappingFragment StoreEntitySet="matiere">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="domaine" ColumnName="domaine" />
@@ -58,7 +58,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="message">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.message)">
+      <EntityTypeMapping TypeName="maBaseModel.message">
         <MappingFragment StoreEntitySet="message">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="confirmation" ColumnName="confirmation" />
@@ -66,12 +66,11 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="reservation">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.reservation)">
+      <EntityTypeMapping TypeName="maBaseModel.reservation">
         <MappingFragment StoreEntitySet="reservation">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="dateCours" ColumnName="dateCours" />
-          <ScalarProperty Name="horaireDebut" ColumnName="horaireDebut" />
-          <ScalarProperty Name="horaireFin" ColumnName="horaireFin" />
+          <ScalarProperty Name="dateCoursDebut" ColumnName="dateCoursDebut" />
+          <ScalarProperty Name="dateCoursFin" ColumnName="dateCoursFin" />
           <ScalarProperty Name="commentaires" ColumnName="commentaires" />
           <ScalarProperty Name="matiere_Id" ColumnName="matiere_Id" />
           <ScalarProperty Name="statutRdv_Id" ColumnName="statutRdv_Id" />
@@ -82,15 +81,15 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="statutRdv">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.statutRdv)">
+      <EntityTypeMapping TypeName="maBaseModel.statutRdv">
         <MappingFragment StoreEntitySet="statutRdv">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="StatutListe_" ColumnName="StatutListe_" />
+          <ScalarProperty Name="StatutListe_" ColumnName="StatutListe " />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="user">
-      <EntityTypeMapping TypeName="IsTypeOf(Model.user)">
+      <EntityTypeMapping TypeName="maBaseModel.user">
         <MappingFragment StoreEntitySet="user">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="nom" ColumnName="nom" />

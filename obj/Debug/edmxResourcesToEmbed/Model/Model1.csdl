@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="maBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="Abonnement">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="dateInscription" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="dateFinInscription" Type="DateTime" Precision="3" />
+    <Property Name="dateInscription" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateFinInscription" Type="DateTime" Precision="0" />
     <Property Name="user_Id" Type="Int32" Nullable="false" />
     <NavigationProperty Name="user" Relationship="Self.FK_abonnement_User" FromRole="Abonnement" ToRole="user" />
     <NavigationProperty Name="Donnees" Relationship="Self.FK_Donnees_Abonnement" FromRole="Abonnement" ToRole="Donnees" />
@@ -16,8 +16,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="dateConnexion" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="dateFinConnexion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dateConnexion" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="dateFinConnexion" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="nbConnexion" Type="Int32" />
     <Property Name="nbReservation" Type="Int32" />
     <Property Name="nbParticipants" Type="Int32" />
@@ -74,9 +74,8 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="dateCours" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="horaireDebut" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="horaireFin" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dateCoursDebut" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="dateCoursFin" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="commentaires" Type="String" MaxLength="280" FixedLength="false" Unicode="true" />
     <Property Name="matiere_Id" Type="Int32" Nullable="false" />
     <Property Name="statutRdv_Id" Type="Int32" Nullable="false" />
@@ -260,7 +259,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="maBaseEntities4" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="maBaseEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Abonnement" EntityType="Self.Abonnement" />
     <EntitySet Name="Donnees" EntityType="Self.Donnees" />
     <EntitySet Name="gestionCompte" EntityType="Self.gestionCompte" />

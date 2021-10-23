@@ -15,15 +15,14 @@ namespace reserverProf.Model
     public partial class reservation
     {
         public int Id { get; set; }
-        public Nullable<System.DateTime> dateCours { get; set; }
-        public Nullable<System.DateTime> horaireDebut { get; set; }
-        public Nullable<System.DateTime> horaireFin { get; set; }
+        public System.DateTime dateCoursDebut { get; set; }
+        public System.DateTime dateCoursFin { get; set; }
         public string commentaires { get; set; }
-        public Nullable<int> matiere_Id { get; set; }
-        public Nullable<int> statutRdv_Id { get; set; }
-        public Nullable<int> jours_Id { get; set; }
-        public Nullable<int> message_Id { get; set; }
-        public Nullable<int> user_Id { get; set; }
+        public int matiere_Id { get; set; }
+        public int statutRdv_Id { get; set; }
+        public int jours_Id { get; set; }
+        public int message_Id { get; set; }
+        public int user_Id { get; set; }
     
         public virtual jours jours { get; set; }
         public virtual matiere matiere { get; set; }
